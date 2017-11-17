@@ -45,7 +45,7 @@ pipeline {
     }
     stage ("Test on CentOS") {
       agent {
-        docker 'openjdk:8u144-jre'
+        docker 'openjdk:8u121-jre'
       }
       steps {
         sh "wget http://192.168.1.16/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar"
