@@ -21,7 +21,7 @@ pipeline {
         sh 'ant -f build.xml -v'
       }
       post {
-        succcess {
+        success {
           archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
       }
    }
