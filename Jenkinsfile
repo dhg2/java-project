@@ -87,6 +87,7 @@ pipeline {
     	sh 'git merge development'
     	echo "Pushing to Origin Master"
     	sh 'git push origin master'
+    	echo "End of Promote Development Branch to Master stage"
       }
     }
   }
