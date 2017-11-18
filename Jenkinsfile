@@ -1,7 +1,6 @@
 pipeline {
   agent none
  
-  
   stages {
     stage('Unit Tests') {
       agent {
@@ -24,8 +23,8 @@ pipeline {
         success {
           archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
       }
-   }
     }
+
     stage ('deploy') {
       agent {
         label 'apache'
@@ -34,6 +33,7 @@ pipeline {
         sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/"
       }
     }
+
     stage ("Running on CentOS") {
       agent {
         label 'CentOS'
@@ -43,6 +43,7 @@ pipeline {
         sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
       }
     }
+
     stage ("Test on Debian") {
       agent {
         docker 'openjdk:8u121-jre'
@@ -52,6 +53,7 @@ pipeline {
         sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
       }
     }
+    
     stage('Promote to Green') {
       agent {
         label 'apache'
