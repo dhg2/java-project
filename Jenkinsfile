@@ -32,7 +32,7 @@ pipeline {
         label 'apache'
       }
       steps {
-        echo "sh mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}"
+        sh "mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}"
         sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
       }
     }
@@ -87,7 +87,6 @@ pipeline {
     	sh 'git merge development'
     	echo "Pushing to Origin Master"
     	sh 'git push origin master'
-    	echo "End of Promote Development Branch to Master stage"
       }
     }
   }
