@@ -12,7 +12,7 @@ pipeline {
         junit 'reports/result.xml'
       }
     }
-    
+
     stage ('build') {
       agent {
         label 'apache'
@@ -56,7 +56,7 @@ pipeline {
       }
     }
 
-    stage('Promote to Green') {
+    stage("Promote to Green") {
       agent {
         label 'apache'
       }
