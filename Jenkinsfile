@@ -96,24 +96,24 @@ pipeline {
       }
       post {
         success {
-          emailext {
+          emailext (
           subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Development Promoted to Master",
           body: """<p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]' Development Promoted to Master":</p>
          <p>Check console output at &QUOT;<a href='${env.BUILD URL}'>${env.JOB NAME} [$env.BUILD NUMBER}]</a>&QUOT;</p>""",
           to: "dean.hegazi@auspost.com.au"
-          }
+          )
         }
       }
     }  
   }
   post {
-    success {
-      emailext{
-        subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Development Promoted to Master",
-        body: """<p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]' Development Promoted to Master":</p>
+    failure {
+      emailext(
+        subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Failed!",
+        body: """<p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]' Failed!":</p>
         <p>Check console output at &QUOT;<a href='${env.BUILD URL}'>${env.JOB NAME} [$env.BUILD NUMBER}]</a>&QUOT;</p>""",
         to: "dean.hegazi@auspost.com.au"
-      }
+      )
     }
   }  
 }
