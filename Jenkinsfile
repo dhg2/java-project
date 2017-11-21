@@ -23,7 +23,7 @@ pipeline {
 
       	/* In order to execute our new global library function called gitCommit, 
       	we're going to utilise the 'script' directive */
-        script {}
+        script {
           // We instantiate our library first so we can access it
           def myLib = new linuxacademy.git.gitStuff();
           /* We calling our function on our library. We're passing it the dir
