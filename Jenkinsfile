@@ -29,6 +29,7 @@ pipeline {
           /* We calling our function on our library. We're passing it the dir
           for our current workspace which is the env.WORKSPACE/.git */
           echo "My Commit: ${myLib.gitCommit("${env.WORKSPACE}/.git")}"
+        }
       }
     }
       
