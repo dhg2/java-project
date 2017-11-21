@@ -14,6 +14,23 @@ pipeline {
       	sayHello 'Awesome student'
       }
     }
+
+    stage('Git Information') {
+      agent any
+
+      steps {
+      	echo "My Branch Name: ${env.BRANCH_NAME}"
+
+      	/* In order to execute our new global library function called gitCommit, 
+      	we're going to utilise the 'script' directive */
+        script {}
+          // We instantiate our library first so we can access it
+          def myLib = new linuxacademy.git.gitStuff();
+          /* We calling our function on our library. We're passing it the dir
+          for our current workspace which is the env.WORKSPACE/.git */
+          echo "My Commit: ${myLib.gitCommit("{env.WORKSPACE}/.git")}"
+      }
+    }
       
     stage('Unit Tests') {
       agent {
